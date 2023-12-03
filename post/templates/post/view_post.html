@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ post.content }}</h2>
+    {% comment %} {% if perms.post.add_photo %}
+        <p><a href="{% url 'edit_blog' blog.id %}">Modifier le billet</a></p>
+    {% endif %} {% endcomment %}
+    <img src="{{ post.image.url }}">
+{% endblock content %}

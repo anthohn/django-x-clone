@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.urls import path
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView)
 
@@ -24,4 +27,9 @@ urlpatterns = [
         name='password_change_done'
         ),
     path('', post.views.home, name='home'),
+    path('post/upload/', post.views.post_upload, name='post_upload'),
+    path('post/<int:post_id>', post.views.view_post, name='view_post'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

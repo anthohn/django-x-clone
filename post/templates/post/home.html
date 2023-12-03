@@ -1,13 +1,31 @@
 {% extends 'base.html' %}
+{% load post_extras %}
 {% block content %}
     <h2>Votre flux</h2>
     {% if user.is_authenticated %}
-        {% comment %} {% for post in posts %}
-                <h4>Post : {{ post.content }}</h4>
-            </a>
-        {% endfor %} {% endcomment %}
+
+
+
+
+        <div class="grid-container">
+            {% for instance in page_obj %}
+                {% if instance|model_type == 'Post' %}
+                    {% include 'post/partials/post_snippet.html' with post=instance %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% include 'partials/page_navigator.html' %}
+
+
+
+
+
+
+
+
+
         <p>Salut, {{ user }} !</p>
-        {% comment %} <a href="{% url 'post_upload' %}">Faire un post</a><br> {% endcomment %}
+        <a href="{% url 'post_upload' %}">Faire un post</a><br>
         <a href="{% url 'logout' %}">Se déconnecter</a>
     {% else %}
         <a href="{% url 'login' %}">Se connecter</a>

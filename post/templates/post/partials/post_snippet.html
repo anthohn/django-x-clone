@@ -1,0 +1,9 @@
+{% load post_extras %}
+<div class="post">
+    <a href="{% url 'view_post' post.id %}">
+        <h4>{{ post.content }}</h4>
+        <img src="{{ post.image.url }}">
+        <p><strong>Écrit par {{ post.contributors.all|join:", " }}</strong></p>
+        <p>{{ post.date_created|get_posted_at_display }}</p>
+    </a>
+</div>
