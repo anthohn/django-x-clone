@@ -1,0 +1,4 @@
+__pycache__
+ENV
+db.sqlite3
+.idea
