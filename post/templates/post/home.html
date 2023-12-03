@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Votre flux</h2>
+    {% if user.is_authenticated %}
+        {% comment %} {% for post in posts %}
+                <h4>Post : {{ post.content }}</h4>
+            </a>
+        {% endfor %} {% endcomment %}
+        <p>Salut, {{ user }} !</p>
+        {% comment %} <a href="{% url 'post_upload' %}">Faire un post</a><br> {% endcomment %}
+        <a href="{% url 'logout' %}">Se déconnecter</a>
+    {% else %}
+        <a href="{% url 'login' %}">Se connecter</a>
+    {% endif %}
+{% endblock content %}
