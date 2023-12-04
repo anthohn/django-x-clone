@@ -1,11 +1,10 @@
 {% load static %}
-
 {% load post_extras %}
-<div class="post border-x-2 p-2">
+<div class="post border-x-2 p-4 hover:bg-gray-200 transition">
     <a href="{% url 'view_post' post.id %}">
         <div class="flex items-start space-x-4">
             <div>
-                <img class="rounded-lg w-40" src="{% static 'Default_pfp.png' %}">
+                <img class="rounded-lg w-12" src="{% static 'Default_pfp.png' %}">
             </div>
             <div>
                 <div class="flex items-center space-x-1">
@@ -16,12 +15,8 @@
                 <div>
                     <p>{{ post.content }}</p>
                 </div>
-                <img class="w-auto border-2 border-gray-300 rounded-lg"src="{{ post.image.url }}">
-
+                <img class="max-h-96 border-gray-300 rounded-lg"src="{{ post.image.url }}">
             </div>
-            
-        </div>
-
-        
+        </div>        
     </a>
 </div>

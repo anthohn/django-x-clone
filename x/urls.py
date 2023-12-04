@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView)
 from django.urls import include, path
+from django.views.generic.base import RedirectView
 
 
 import user.views
@@ -29,7 +30,8 @@ urlpatterns = [
     template_name='user/password_change_done.html'),
         name='password_change_done'
         ),
-    path('', post.views.home, name='home'),
+    path('', RedirectView.as_view(url='home/')),
+    path('home', post.views.home, name='home'),
     path('post/upload/', post.views.post_upload, name='post_upload'),
     path('post/<int:post_id>', post.views.view_post, name='view_post'),
 ]
