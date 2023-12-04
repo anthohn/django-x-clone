@@ -8,7 +8,7 @@ from . import forms
 def signup_page(request):
     form = forms.SignupForm()
     if request.method == 'POST':
-        form = forms.SignupForm(request.POST)
+        form = forms.SignupForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
             # auto-login user

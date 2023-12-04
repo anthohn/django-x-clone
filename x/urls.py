@@ -6,11 +6,14 @@ from django.conf.urls.static import static
 
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView)
+from django.urls import include, path
+
 
 import user.views
 import post.views
 
 urlpatterns = [
+    path("__reload__/", include("django_browser_reload.urls")),
     path('admin/', admin.site.urls),
     path('signup/', user.views.signup_page, name='signup'),
     path('login/', LoginView.as_view(

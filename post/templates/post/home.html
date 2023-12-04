@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 {% load post_extras %}
 {% block content %}
-    <h2>Votre flux</h2>
+    <h2>Pour Vous</h2>
     {% if user.is_authenticated %}
-
-
-
-
         <div class="grid-container">
             {% for instance in page_obj %}
                 {% if instance|model_type == 'Post' %}
@@ -15,15 +11,6 @@
             {% endfor %}
         </div>
         {% include 'partials/page_navigator.html' %}
-
-
-
-
-
-
-
-
-
         <p>Salut, {{ user }} !</p>
         <a href="{% url 'post_upload' %}">Faire un post</a><br>
         <a href="{% url 'logout' %}">Se déconnecter</a>

@@ -1,9 +1,27 @@
+{% load static %}
+
 {% load post_extras %}
-<div class="post">
+<div class="post border-x-2 p-2">
     <a href="{% url 'view_post' post.id %}">
-        <h4>{{ post.content }}</h4>
-        <img src="{{ post.image.url }}">
-        <p><strong>Écrit par {{ post.contributors.all|join:", " }}</strong></p>
-        <p>{{ post.date_created|get_posted_at_display }}</p>
+        <div class="flex items-start space-x-4">
+            <div>
+                <img class="rounded-lg w-40" src="{% static 'Default_pfp.png' %}">
+            </div>
+            <div>
+                <div class="flex items-center space-x-1">
+                    <p class="font-bold text-sm">{{ post.uploader }} </p>
+                    <p>·</p>
+                    <p> {{ post.date_created|get_posted_at_display }}</p>
+                </div>
+                <div>
+                    <p>{{ post.content }}</p>
+                </div>
+                <img class="w-auto border-2 border-gray-300 rounded-lg"src="{{ post.image.url }}">
+
+            </div>
+            
+        </div>
+
+        
     </a>
 </div>
