@@ -17,10 +17,5 @@
             {% endfor %}
         </div>
         {% include 'partials/page_navigator.html' %}
-        <p>Salut, {{ user }} !</p>
-        <a href="{% url 'post_upload' %}">Faire un post</a><br>
-        <a href="{% url 'logout' %}">Se déconnecter</a>
-    {% else %}
-        <a href="{% url 'login' %}">Se connecter</a>
     {% endif %}
 {% endblock content %}
