@@ -6,23 +6,40 @@
         <button type="button" onClick="javascript:history.go(-1);">
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-z80fyv r-19wmn03" style="color: rgb(15, 20, 25);"><g><path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z"></path></g></svg>
         </button>
-
-        <h1 class="font-bold text-lg">Poster</h1>
+        <h1 class="font-bold text-lg">{{ view_user.first_name }} {{ view_user.last_name }}</h1>
     </div>
-    <div class="flex items-start space-x-4 p-4">
+    <div class="flex flex-col space-x-4 p-4">
         <div>
-            <img class="rounded-lg w-12" src="{% static 'Default_pfp.png' %}">
+            {% if view_user.profile_photo %}
+                <img class="rounded-full max-h-32" src="{{ view_user.profile_photo.url }}" alt="Profile Photo">
+            {% else %}
+                <img class="rounded-full max-h-32" src="{% static 'Default_pfp.png' %}">
+            {% endif %}
         </div>
         <div>
-            <div class="flex items-center space-x-1">
-                <p class="font-bold text-sm">{{ post.uploader }} </p>
-                <p>·</p>
-                {% comment %} <p> {{ post.date_created|get_posted_at_display }}</p> {% endcomment %}
+            <div class="flex items-center space-x-1 font-bold text-xl">
+                <p class="">{{ view_user.first_name }}</p>
+                <p>{{ view_user.last_name }}</p>
             </div>
             <div>
-                <p>{{ user.username }}</p>
+                <p>@{{ view_user.username }}</p>
             </div>
-            <img class="max-h-96 mt-2 border rounded-lg"src="{{ post.image.url }}">
+        </div>
+        <div class="flex items-center space-x-1  mt-4">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-14j79pv r-1d4mawv"><g><path d="M7 4V3h2v1h6V3h2v1h1.5C19.89 4 21 5.12 21 6.5v12c0 1.38-1.11 2.5-2.5 2.5h-13C4.12 21 3 19.88 3 18.5v-12C3 5.12 4.12 4 5.5 4H7zm0 2H5.5c-.27 0-.5.22-.5.5v12c0 .28.23.5.5.5h13c.28 0 .5-.22.5-.5v-12c0-.28-.22-.5-.5-.5H17v1h-2V6H9v1H7V6zm0 6h2v-2H7v2zm0 4h2v-2H7v2zm4-4h2v-2h-2v2zm0 4h2v-2h-2v2zm4-4h2v-2h-2v2z"></path></g></svg>
+            <p>A rejoint X en {{ view_user.date_joined|date:"F Y" }}</p>
         </div>
     </div>    
+    <div class="flex flex-row border-b font-bold text-neutral-400">
+        <a href="#" class="basis-2/12 hover:bg-gray-200 p-5 text-center transition" type="">Posts</a>
+        <a href="#" class="basis-1/12 hover:bg-gray-200 p-5 text-center transition" type="">Réponses</a>
+        <a href="#" class="basis-4/12 hover:bg-gray-200 p-5 text-center transition" type="">X marquants</a>
+        <a href="#" class="basis-2/12 hover:bg-gray-200 p-5 text-center transition" type="">Médias</a>
+        <a href="#" class="basis-2/12 hover:bg-gray-200 p-5 text-center transition" type="">J'aime</a>
+    </div>
+    {% for instance in sorted_usersposts %}
+        {% if instance|model_type == 'Post' %}
+            {% include 'user/partials/userpost_snippet.html' with post=instance %}
+        {% endif %}
+    {% endfor %}
 {% endblock content %}

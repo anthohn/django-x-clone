@@ -26,10 +26,10 @@ def homepage(request):
         key=lambda instance: instance.date_created,
         reverse=True
     )
-    paginator = Paginator(sorted_posts, 10)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    context = {'page_obj': page_obj, 'form': form}
+
+    context = {
+        'sorted_posts': sorted_posts,
+    }
 
     return render(request, 'post/homepage.html', context=context)
 

@@ -12,9 +12,10 @@
             </div>
             <div>
                 <div class="flex items-center space-x-1">
-                    <p class="font-bold text-sm">{{ post.uploader }} </p>
-                    <p>·</p>
-                    <p> {{ post.date_created|get_posted_at_display }}</p>
+                    <p class="font-bold text-sm">{{ post.uploader.first_name }} {{ post.uploader.last_name }} </p>
+                    <p class="text-sm text-neutral-500">@{{ post.uploader.username }}</p>
+                    <p class="text-neutral-500">·</p>
+                    <p class="text-neutral-500"> {{ post.date_created|get_posted_at_display }}</p>
                 </div>
                 <div>
                     <p>{{ post.content }}</p>

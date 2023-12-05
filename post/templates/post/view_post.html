@@ -2,29 +2,35 @@
 {% load static %}
 {% load post_extras %}
 {% block content %}
-    <div class="p-4 flex items-center space-x-6">
+    <div class="p-4">
+    <div class="flex items-center space-x-6">
         <button type="button" onClick="javascript:history.go(-1);">
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-z80fyv r-19wmn03" style="color: rgb(15, 20, 25);"><g><path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z"></path></g></svg>
         </button>
-
-        <h1 class="font-bold text-lg">Poster</h1>
+        <h1 class="font-bold text-xl">Poster</h1>
     </div>
-    <div class="flex items-start space-x-4 p-4">
+    <div class="flex items-start space-x-4 pt-6">
         <div>
-            <img class="rounded-lg w-12" src="{% static 'Default_pfp.png' %}">
-        </div>
-        <div>
-            <div class="flex items-center space-x-1">
-                <p class="font-bold text-sm">{{ post.uploader }} </p>
-                <p>·</p>
-                <p> {{ post.date_created|get_posted_at_display }}</p>
-            </div>
             <div>
-                <p>{{ post.content }}</p>
+                {% if post.uploader.profile_photo %}
+                    <img class="max-h-10 w-10 rounded-full" src="{{ post.uploader.profile_photo.url }}" alt="{{ post.uploader.username }}">
+                {% else %}
+                    <img class="max-h-10 w-10 rounded-full" src="{% static 'Default_pfp.png' %}">
+                {% endif %}
             </div>
-            {% if post.image %}
-                <img class="max-h-96 mt-2 border rounded-lg"src="{{ post.image.url }}">
-            {% endif %}
         </div>
-    </div>    
+        <div>
+            <a href="{% url 'view_user' post.uploader.username %} " class="font-bold text-sm">{{ post.uploader.first_name }} {{ post.uploader.last_name }}</a>
+            <p class="text-sm text-neutral-500">@{{ post.uploader.username }}</p>
+        </div>
+    </div>
+    <div class="pt-4">
+        <h1>{{ post.content }}</h1>
+        {% if post.image %}
+                <img class="max-h-96 my-2 rounded-lg"src="{{ post.image.url }}">
+            {% endif %}
+        <p class="pt-2 text-neutral-500">{{ post.date_created|date:"G:i A" }} &middot; {{ post.date_created|date:"j M Y"|lower }}</p>
+    </div>
+
+</div>
 {% endblock content %}
