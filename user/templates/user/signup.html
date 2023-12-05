@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="flex justify-center">
-		<form action="" method="post" class="flex flex-col items-center mt-8 pb-10 px-28 pt-2 bg-gray-200 rounded-2xl">
+		<form action="" method="post" enctype="multipart/form-data" class="flex flex-col items-center mt-8 pb-10 px-28 pt-2 bg-gray-200 rounded-2xl">
             {% csrf_token %}
             <img src="{% static 'x-logo.png' %}" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" />
 			<h2 class="text-3xl font-bold  mb-10">Inscrivez-vous à X</h2><br>
@@ -23,6 +23,7 @@
 			<div class="mb-6 w-full">
 				<input type="text" name="username" value="{{ last_username }}" placeholder="Nom d'utilisateur" autocomplete="username" required autofocus class=" border border-gray-500  text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full h-12 p-2.5">
 			</div>
+            <input  id="profile_photo" class="" name="profile_photo" type="file">
 			<div class="mb-6 w-full">
 				<input type="password" name="password1" id="inputPassword" autocomplete="current-password" placeholder="Mot de passe" class=" border border-gray-500 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full h-12 p-2.5" required>
 			</div>

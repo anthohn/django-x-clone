@@ -4,7 +4,11 @@
     <a href="{% url 'view_post' post.id %}">
         <div class="flex items-start space-x-4">
             <div>
-                <img class="rounded-lg w-12" src="{% static 'Default_pfp.png' %}">
+                {% if post.uploader.profile_photo %}
+                    <img class="max-h-10 w-10 rounded-full" src="{{ post.uploader.profile_photo.url }}" alt="{{ post.uploader.username }}">
+                {% else %}
+                    <img class="max-h-10 w-10 rounded-full" src="{% static 'Default_pfp.png' %}">
+                {% endif %}
             </div>
             <div>
                 <div class="flex items-center space-x-1">
@@ -15,7 +19,9 @@
                 <div>
                     <p>{{ post.content }}</p>
                 </div>
-                <img class="max-h-96 mt-2 border rounded-lg"src="{{ post.image.url }}">
+                {% if post.image %}
+                    <img class="max-h-96 mt-2 border rounded-lg"src="{{ post.image.url }}">
+                {% endif %}
             </div>
         </div>        
     </a>

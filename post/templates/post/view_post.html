@@ -22,7 +22,9 @@
             <div>
                 <p>{{ post.content }}</p>
             </div>
-            <img class="max-h-96 mt-2 border rounded-lg"src="{{ post.image.url }}">
+            {% if post.image %}
+                <img class="max-h-96 mt-2 border rounded-lg"src="{{ post.image.url }}">
+            {% endif %}
         </div>
     </div>    
 {% endblock content %}

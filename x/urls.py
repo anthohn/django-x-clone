@@ -34,7 +34,7 @@ urlpatterns = [
     path('home/', post.views.homepage, name='homepage'),
     path('post/upload/', post.views.post_upload, name='post_upload'),
     path('status/<int:post_id>', post.views.view_post, name='view_post'),
-    path('<str:user_username>', user.views.view_user, name='view_user'),
+    # path('<str:user_username>', user.views.view_user, name='view_user'),
 ]
 if settings.DEBUG:
     urlpatterns += static(
