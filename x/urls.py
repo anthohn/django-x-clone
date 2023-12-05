@@ -30,8 +30,8 @@ urlpatterns = [
     template_name='user/password_change_done.html'),
         name='password_change_done'
         ),
-    path('', RedirectView.as_view(url='home/')),
-    path('home', post.views.home, name='home'),
+    path('', RedirectView.as_view(url='home')),
+    path('home/', post.views.homepage, name='homepage'),
     path('post/upload/', post.views.post_upload, name='post_upload'),
     path('post/<int:post_id>', post.views.view_post, name='view_post'),
 ]

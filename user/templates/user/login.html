@@ -1,10 +1,39 @@
-{% extends 'base.html' %}
+{% load static tailwind_tags %}
+{% tailwind_css %}
+{% load static %}
+
 {% block content %}
-    <h2>Connexion</h2>
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Se connecter</button>
-    </form>
-    <p>Pas encore membre ? <a href="{% url 'signup' %}">Inscrivez-vous maintenant !</a></p>
+    <div class="flex justify-center">
+
+		<form action="" method="post" class="flex flex-col items-center mt-8 pb-10 px-28 pt-2 bg-gray-200 rounded-2xl">
+            {% csrf_token %}
+            <img src="{% static 'x-logo.png' %}" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" />
+			<h2 class="text-3xl font-bold  mb-10">Connectez-vous à X</h2><br>
+
+			{% if error %}
+				<div class="flex items-center p-4 mb-4 text-sm text-white bg-red-600 w-96" role="alert">
+					<svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
+						<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+					</svg>
+				</div>
+			{% endif %}
+			<div class="mb-6 w-full">
+				<input type="text" name="username" value="{{ last_username }}" placeholder="Nom d'utilisateur" autocomplete="username" required autofocus class=" border border-gray-500  text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full h-12 p-2.5">
+			</div>
+			<div class="mb-6 w-full">
+				<input type="password" name="password" id="inputPassword" autocomplete="current-password" placeholder="Mot de passe" class=" border border-gray-500 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full h-12 p-2.5" required>
+			</div>
+            {% if form.errors %}
+                <div class="text-red-500 w-96">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+			<button type="submit" class="transition mt-10 w-72 text-white bg-gray-950 hover:bg-gray-900 font-bold rounded-full text-base px-5 py-2 text-center">Se Connecter</button>
+
+			<p class="text-zinc-500  text-base mt-10">Vous n'avez pas de compte ?
+				<a href="{% url 'signup' %}" class="text-sky-500">Inscrivez-vous</a>
+			</p>
+			<br>
+		</form>
+    </div>
 {% endblock content %}

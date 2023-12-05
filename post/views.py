@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from . import models
 from . import forms
 
-def home(request):
+@login_required
+def homepage(request):
     form = forms.PostForm()
     if request.method == 'POST':
         form = forms.PostForm(request.POST, request.FILES)
@@ -16,7 +17,7 @@ def home(request):
             post.uploader = request.user
             # now we can save
             post.save()
-            return redirect('home')
+            return redirect('homepage')
 
 
     posts = models.Post.objects.all()
@@ -30,7 +31,7 @@ def home(request):
     page_obj = paginator.get_page(page_number)
     context = {'page_obj': page_obj, 'form': form}
 
-    return render(request, 'post/home.html', context=context)
+    return render(request, 'post/homepage.html', context=context)
 
 @login_required
 def post_upload(request):
@@ -43,7 +44,7 @@ def post_upload(request):
             post.uploader = request.user
             # now we can save
             post.save()
-            return redirect('home')
+            return redirect('homepage')
     return render(request, 'post/post_upload.html', context={'form': form})
 
 @login_required
