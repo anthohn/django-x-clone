@@ -17,10 +17,10 @@
             <div class="flex items-center space-x-1">
                 <p class="font-bold text-sm">{{ post.uploader }} </p>
                 <p>·</p>
-                <p> {{ post.date_created|get_posted_at_display }}</p>
+                {% comment %} <p> {{ post.date_created|get_posted_at_display }}</p> {% endcomment %}
             </div>
             <div>
-                <p>{{ post.content }}</p>
+                <p>{{ user.username }}</p>
             </div>
             <img class="max-h-96 mt-2 border rounded-lg"src="{{ post.image.url }}">
         </div>

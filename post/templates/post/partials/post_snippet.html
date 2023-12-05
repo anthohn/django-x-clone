@@ -1,6 +1,6 @@
 {% load static %}
 {% load post_extras %}
-<div class="post border-x border-t p-4  hover:bg-gray-100 transition">
+<div class="post border-t p-4  hover:bg-gray-100 transition">
     <a href="{% url 'view_post' post.id %}">
         <div class="flex items-start space-x-4">
             <div>
@@ -15,7 +15,7 @@
                 <div>
                     <p>{{ post.content }}</p>
                 </div>
-                <img class="max-h-96 border rounded-lg"src="{{ post.image.url }}">
+                <img class="max-h-96 mt-2 border rounded-lg"src="{{ post.image.url }}">
             </div>
         </div>        
     </a>

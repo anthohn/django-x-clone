@@ -10,14 +10,14 @@
     </head>
     <body>
          <div class="flex flex-row">
-            <aside class="basis-4/12 h-screen flex justify-end" >
+            <aside class="basis-4/12 h-screen flex justify-end border-x">
                <div class="fixed h-full w-64 mr-10 py-4 overflow-y-auto">
                   <a href="#" class="flex items-center ps-2.5 mb-5">
                      <img src="{% static 'x-logo.png' %}" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" />
                   </a>
                   <ul class="space-y-1 text-xl  font-normal">
                      <li>
-                        <a href="#" class="transition flex items-center p-3 text-gray-900 rounded-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <a href="{% url 'homepage' %}" class="transition flex items-center p-3 text-gray-900 rounded-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-18jsvk2 r-lwhw9o r-cnnz9e"><g><path d="M21.591 7.146L12.52 1.157c-.316-.21-.724-.21-1.04 0l-9.071 5.99c-.26.173-.409.456-.409.757v13.183c0 .502.418.913.929.913H9.14c.51 0 .929-.41.929-.913v-7.075h3.909v7.075c0 .502.417.913.928.913h6.165c.511 0 .929-.41.929-.913V7.904c0-.301-.158-.584-.408-.758z"></path></g></svg>
                            <span class="ms-3">Accueil</span>
                         </a>
@@ -39,6 +39,12 @@
                         <a href="#" class="transition flex items-center p-3 text-gray-900 rounded-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-18jsvk2 r-lwhw9o r-cnnz9e"><g><path d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5v13c0 1.381-1.119 2.5-2.5 2.5h-15c-1.381 0-2.5-1.119-2.5-2.5v-13zm2.5-.5c-.276 0-.5.224-.5.5v2.764l8 3.638 8-3.636V5.5c0-.276-.224-.5-.5-.5h-15zm15.5 5.463l-8 3.636-8-3.638V18.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5v-8.037z"></path></g></svg>
                            <span class="flex-1 ms-3 whitespace-nowrap">Messages</span>
+                           <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="{% url 'view_user' user.username %}" class="transition flex items-center p-3 text-gray-900 rounded-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                           <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-18jsvk2 r-lwhw9o r-cnnz9e"><g><path d="M17.863 13.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H3.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46C7.627 11.85 9.648 11 12 11s4.373.85 5.863 2.44zM12 2C9.791 2 8 3.79 8 6s1.791 4 4 4 4-1.79 4-4-1.791-4-4-4z"></path></g></svg>                           <span class="flex-1 ms-3 whitespace-nowrap">Profil</span>
                            <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
                         </a>
                      </li>
@@ -79,7 +85,7 @@
             <div class="basis-4/12">
                   {% block content %}{% endblock content %}
             </div>
-            <div class="basis-4/12">
+            <div class="basis-4/12 border-x">
                <div class="h-screen w-7/12 m-10">
                   <div class=" bg-gray-100 p-3 rounded-2xl">
                      <h1 class="text-xl font-extrabold">Abonnez-vous à Premium</h1>
