@@ -39,7 +39,9 @@
     </div>
     {% for instance in sorted_usersposts %}
         {% if instance|model_type == 'Post' %}
-            {% include 'user/partials/userpost_snippet.html' with post=instance %}
+            <a href="{% url 'view_post' instance.id %}">
+                {% include 'post/partials/post_snippet.html' with post=instance %}
+            </a>
         {% endif %}
     {% endfor %}
 {% endblock content %}

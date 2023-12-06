@@ -31,6 +31,11 @@
             {% endif %}
         <p class="pt-2 text-neutral-500">{{ post.date_created|date:"G:i A" }} &middot; {{ post.date_created|date:"j M Y"|lower }}</p>
     </div>
-
+    {% include 'post/partials/form_comment.html' %}
 </div>
+{% for instance in sorted_comments %}
+    {% if instance|model_type == 'Comment' %}
+        {% include 'post/partials/post_snippet.html' with post=instance %}
+    {% endif %}
+{% endfor %}
 {% endblock content %}
