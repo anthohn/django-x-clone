@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 from . import models
 from . import forms
+from .forms import UpdateUserForm
+
 
 from post.models import Post
 
@@ -40,11 +42,28 @@ def view_user(request, user_username):
         reverse=True
     )
 
+    is_own_profile = False
+    profile_form = None
+
+    if request.user == view_user:
+        is_own_profile = True
+        # Si c'est le profil de l'utilisateur connecté, créez le formulaire de modification du profil
+        profile_form = UpdateUserForm(instance=view_user)
+
+        if request.method == 'POST':
+            # Si le formulaire est soumis, traitez les données
+            profile_form = UpdateUserForm(request.POST, instance=view_user)
+            if profile_form.is_valid():
+                profile_form.save()
+                # Ajoutez une redirection ou un message de succès ici si nécessaire
+
+
     context = {
         'sorted_usersposts': sorted_usersposts,
         'view_user': view_user,
-        'registration_date': registration_date
+        'registration_date': registration_date,
+        'is_own_profile': is_own_profile,
+        'profile_form': profile_form,
     }
-
 
     return render(request, 'user/view_user.html', context=context)

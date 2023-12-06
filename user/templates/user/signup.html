@@ -3,12 +3,11 @@
 {% load static %}
 
 {% block content %}
-    <div class="flex justify-center">
-		<form action="" method="post" enctype="multipart/form-data" class="flex flex-col items-center mt-8 pb-10 px-28 pt-2 bg-gray-200 rounded-2xl">
-            {% csrf_token %}
+	<div class="flex justify-center items-center bg-neutral-400 h-screen">
+		<form action="" method="post" enctype="multipart/form-data" class="flex flex-col items-center mt-8 pb-10 px-28 pt-2 bg-white rounded-2xl">
+			{% csrf_token %}
             <img src="{% static 'x-logo.png' %}" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" />
-			<h2 class="text-3xl font-bold  mb-10">Inscrivez-vous à X</h2><br>
-
+			<h2 class="text-3xl font-bold mt-6 mb-10">Inscrivez-vous à X</h2><br>
 			{% if error %}
 				<div class="flex items-center p-4 mb-4 text-sm text-white bg-red-600 w-96" role="alert">
 					<svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
