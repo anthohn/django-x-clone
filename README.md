@@ -1,6 +1,9 @@
 # django-x-clone
 
-This project was created to apply my Django knowledge by attempting to replicate X 
+This project was created to apply my Django knowledge by attempting to replicate X
+
+![django-x-clone-home-page](https://github.com/anthohn/django-x-clone/assets/75019251/9e65d060-f107-4b6d-b9f1-2519386c7bf4)
+
 
 ## Project Objective
 
