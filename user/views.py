@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 from . import models
 from . import forms
-from .forms import UpdateUserForm
+from .forms import UpdateUserForm, FollowUsersForm
+
 
 
 from post.models import Post
@@ -57,6 +58,21 @@ def view_user(request, user_username):
                 profile_form.save()
                 # Ajoutez une redirection ou un message de succès ici si nécessaire
 
+    form = None
+    if request.user != view_user:
+        form = FollowUsersForm(instance=request.user, initial={'follows': view_user})
+        if request.method == 'POST':
+            form = FollowUsersForm(request.POST, instance=request.user)
+            if form.is_valid():
+                # if view_user != request.user:
+                if view_user in request.user.follows.all():
+                    # Unfollow
+                    request.user.follows.remove(view_user)
+                else:
+                    # Follow
+                    request.user.follows.add(view_user)
+                return redirect('view_user', user_username=user_username)
+
 
     context = {
         'sorted_usersposts': sorted_usersposts,
@@ -64,6 +80,21 @@ def view_user(request, user_username):
         'registration_date': registration_date,
         'is_own_profile': is_own_profile,
         'profile_form': profile_form,
+        'form': form,
     }
 
     return render(request, 'user/view_user.html', context=context)
+
+
+
+# @login_required
+# def follow_user(request, user_id):
+    
+#         # if view_user != request.user:
+#         if view_user in request.user.follows.all():
+#             # Unfollow
+#             request.user.follows.remove(view_user)
+#         else:
+#             # Follow
+#             request.user.follows.add(view_user)
+#         return redirect('view_user', user_username=user_username)

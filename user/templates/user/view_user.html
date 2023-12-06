@@ -44,7 +44,6 @@
                                     </h3> 
                                 </div>
                                 <div class="py-4 dark:border-gray-600 flex justify-end">
-                                    {% comment %} <button type="button"  class="transition border bg-neutral-900 hover:bg-neutral-800 font-bold rounded-full text-sm py-1 px-3 text-center">Enregistrer</button> {% endcomment %}
                                     <button type="button" onclick="submitForm()"  class="text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2">Enregistrer</button>
                                 </div>
                             </div>
@@ -69,6 +68,26 @@
                         document.getElementById('editProfileForm').submit();
                     }
                 </script>
+            {% else %}
+            <form method="post" class="hidden" id="follow" action="{% url 'view_user' user_username=view_user.username %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" name="follow_action" value="follow" class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2">Suivre</button>
+            </form>
+            <div>
+                {% if view_user in request.user.follows.all %}
+                    <button onclick="submitFollowForm()" type="submit" class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2">Se désabonner</button>
+                {% else %}
+                    <button onclick="submitFollowForm()" type="submit" class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 ">Suivre</button>
+                {% endif %}
+                <script>
+                    function submitFollowForm() {
+                        document.getElementById('follow').submit();
+                    }
+                </script>
+            </div>
+
+         
             {% endif %}
         </div> 
         <div>
@@ -89,6 +108,17 @@
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-14j79pv r-1d4mawv"><g><path d="M7 4V3h2v1h6V3h2v1h1.5C19.89 4 21 5.12 21 6.5v12c0 1.38-1.11 2.5-2.5 2.5h-13C4.12 21 3 19.88 3 18.5v-12C3 5.12 4.12 4 5.5 4H7zm0 2H5.5c-.27 0-.5.22-.5.5v12c0 .28.23.5.5.5h13c.28 0 .5-.22.5-.5v-12c0-.28-.22-.5-.5-.5H17v1h-2V6H9v1H7V6zm0 6h2v-2H7v2zm0 4h2v-2H7v2zm4-4h2v-2h-2v2zm0 4h2v-2h-2v2zm4-4h2v-2h-2v2z"></path></g></svg>
             <p>A rejoint X en {{ view_user.date_joined|date:"F Y" }}</p>
         </div>
+        <div class="flex items-center space-x-6 mt-3 text-sm">
+            <div class="flex space-x-1">
+                <p class="font-bold">{{ view_user.follows.count }}</p>
+                <p>Abonnements</p>
+            </div>
+            <div class="flex space-x-1">
+                <p class="font-bold">{{ view_user.followers.count }}</p>
+                <p>Abonnés</p>
+            </div>
+        </div>
+
     </div>    
     <div class="flex flex-row border-b font-bold text-neutral-400">
         <a href="#" class="basis-2/12 hover:bg-gray-200 p-5 text-center transition" type="">Posts</a>

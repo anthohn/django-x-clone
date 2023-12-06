@@ -67,7 +67,6 @@ def view_post(request, post_id):
     if request.method == 'POST':
         form = forms.CommentForm(request.POST)
         if form.is_valid():
-
             comment = form.save(commit=False)
             comment.post = post  # Associez le commentaire à la publication
             comment.uploader = request.user  # Associez l'utilisateur actuel au commentaire
