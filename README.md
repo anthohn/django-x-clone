@@ -5,21 +5,17 @@ This project was created to apply my Django knowledge by attempting to replicate
 ![django-x-clone-home-page](https://github.com/anthohn/django-x-clone/assets/75019251/9e65d060-f107-4b6d-b9f1-2519386c7bf4)
 
 
-## Project Objective
+## Overview
 
 The main goal of this project is to develop a web application **only** by using the Django framework to create a website where users can create posts, follow other users, and interact with content similar to the X application.
 
 ## Planned Features
 
-1. **User Authentication:** Allow users to register, log in, and manage their profiles.
-
-2. **Post Creation:** Enable users to create short messages, similar to tweets.
-
-3. **User Following:** Allow users to follow other users to see their posts in their feed.
-
-4. **Interactions:** Implement features such as likes, retweets, and comments on posts.
-
-5. **Search:** Add a search feature to allow users to find other users or specific posts.
+- **User Authentication:** Allow users to register, log in, and manage their profiles.
+- **Post Creation:** Enable users to create short messages, similar to tweets.
+- **User Following:** Allow users to follow other users to see their posts in their feed.
+- **Interactions:** Implement features such as likes, retweets, and comments on posts.
+- **Search:** Add a search feature to allow users to find other users or specific posts.
 
 ## Development Environment
 
