@@ -19,12 +19,37 @@ The main goal of this project is to develop a web application **only** by using 
 
 ## Development Environment
 
-1. Clone the project: 'git clone https://github.com/anthohn/django-x-clone.git'
-2. Navigate to the project directory: 'cd django-x-clone'
-3. Create virtual  environment : 'py -m venv ENV'
-4. Activate the virtual envrionment : 'env\Scripts\activate'
-5. Install dependencies: 'pip install -r requirements.txt'
-6. Apply migrations: 'py manage.py migrate'
-7. Run the development server: 'py manage.py runserver'
+1. Clone the project:
+````
+git clone https://github.com/anthohn/django-x-clone.git
+````
+2. Navigate to the project directory:
+````
+cd django-x-clone
+````
+3. Create virtual  environment :
+````
+py -m venv ENV
+````
+4. Activate the virtual envrionment :
+````
+env\Scripts\activate
+````
+5. Install dependencies :
+````
+pip install -r requirements.txt
+````
+6. Install TawilwindCss :
+````
+py manage.py tailwind install
+````
+7. Apply migrations :
+````
+py manage.py migrate
+````
+8. Run the development server :
+````
+py manage.py runserver
+````
 
 **Note:** This project is developed for educational purposes and to practice Django skills. It is not affiliated with X.
